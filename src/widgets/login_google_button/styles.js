@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
     marginTop: AppConfig.paddingXL,
     borderWidth: ms(2),
     borderColor: AppConfig.buttonColor,
-    paddingHorizontal: AppConfig.padding5XL,
+    paddingHorizontal: AppConfig.padding2XL,
+
     paddingVertical: AppConfig.paddingL,
     borderRadius: ms(6),
   },

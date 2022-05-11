@@ -2,9 +2,9 @@ import { View, Image } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { HomeScreen, ScanScreen, ProfileScreen } from '../../screens';
+import { HomeScreen, ScanScreen } from '../../screens';
 
-import { LocationIcon, SearchIcon, UserIcon } from '../assets';
+import { LocationIcon, ScanIcon } from '../assets';
 
 import { styles, tabBarStyle } from '../../widgets/bottom_navigator/styles';
 
@@ -35,18 +35,7 @@ const MainTabs = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
-              <Image source={SearchIcon} style={styles.icon(focused)} />
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View>
-              <Image source={UserIcon} style={styles.icon(focused)} />
+              <Image source={ScanIcon} style={styles.icon(focused)} />
             </View>
           ),
         }}

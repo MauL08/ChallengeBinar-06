@@ -18,8 +18,14 @@ export default class AppConfig extends Component {
   static padding7XL = ms(72);
   static padding8XL = ms(92);
 
+  static heading1Size = ms(20);
+  static heading2Size = ms(16);
+  static heading3Size = ms(14);
+  static normalFontSize = ms(12);
+
   // Color Data
   static baseColor = 'white';
+  static primaryColor = '#60d67a';
   static buttonColor = '#60d67a';
   static blackColor = 'black';
 }

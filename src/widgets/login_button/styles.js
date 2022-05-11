@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: AppConfig.buttonColor,
-    paddingHorizontal: AppConfig.padding5XL,
+    paddingHorizontal: AppConfig.padding2XL,
     paddingVertical: AppConfig.paddingL,
     borderRadius: ms(6),
   },
