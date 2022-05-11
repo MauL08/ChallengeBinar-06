@@ -5,9 +5,9 @@ const ScreenStatusBar = () => {
   const theme = useColorScheme();
 
   return theme === 'dark' ? (
-    <StatusBar barStyle="dark-content" />
+    <StatusBar barStyle="light-content" backgroundColor="black" />
   ) : (
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="dark-content" backgroundColor="white" />
   );
 };
 
