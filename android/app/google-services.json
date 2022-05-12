@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "763831033371",
+    "project_id": "rnmaps-d019a",
+    "storage_bucket": "rnmaps-d019a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763831033371:android:c85d54afbb245965aba2be",
+        "android_client_info": {
+          "package_name": "com.wuzz_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763831033371-hv7qi269ec8l26d4js54utrcit3mjpfb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wuzz_app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "763831033371-5110lhqle5u8dg9sgv9pi3qj9he9vnt6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUfJp0rx26FCDQnpzXVpWKVJnc8Uz1TA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763831033371-5110lhqle5u8dg9sgv9pi3qj9he9vnt6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
