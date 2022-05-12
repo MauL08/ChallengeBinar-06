@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   button: {
     padding: AppConfig.paddingXL,
     borderRadius: ms(8),
-    marginTop: ms(550),
+    marginTop: ms(500),
     backgroundColor: AppConfig.buttonColor,
   },
   buttonText: {
