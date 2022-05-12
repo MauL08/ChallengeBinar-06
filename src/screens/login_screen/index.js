@@ -4,8 +4,8 @@ import React from 'react';
 import { styles } from './styles';
 import LoginButton from '../../widgets/login_button';
 import ScreenStatusBar from '../../widgets/screen_status_bar';
-// import ForgotPassword from '../../widgets/forgot_password_button';
 import LoginGoogleButton from '../../widgets/login_google_button';
+import FingerprintButton from '../../widgets/fingerprint_button';
 
 const LoginScreen = () => {
   return (
@@ -21,6 +21,7 @@ const LoginScreen = () => {
         />
         <LoginButton />
         <LoginGoogleButton />
+        <FingerprintButton />
       </View>
     </View>
   );

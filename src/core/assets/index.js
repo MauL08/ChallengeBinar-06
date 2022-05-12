@@ -5,6 +5,7 @@ import LocationIcon from './icons/location_icon.png';
 import ScanIcon from './icons/scan_icon.png';
 import ExitIcon from './icons/exit_icon.png';
 import RefreshIcon from './icons/refresh_icon.png';
+import FingerprintIcon from './icons/fingerprint_icon.png';
 
 export {
   GoogleIcon,
@@ -13,4 +14,5 @@ export {
   ScanIcon,
   ExitIcon,
   RefreshIcon,
+  FingerprintIcon,
 };
