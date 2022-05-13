@@ -10,13 +10,24 @@ import { useNavigation } from '@react-navigation/native';
 
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import GeoLocation from 'react-native-geolocation-service';
-import Snackbar from 'react-native-snackbar';
+import analytics from '@react-native-firebase/analytics';
+import messaging from '@react-native-firebase/messaging';
 
-import { ExitIcon, LocationIcon, RefreshIcon } from '../../core/assets';
+// import Snackbar from 'react-native-snackbar';
+// import Geocoder from 'react-native-geocoding';
+
+import { ExitIcon } from '../../core/assets';
 import { styles } from './styles';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+
+  // const onCrash = () => {
+  //   crashlytics().log('Log Mounted');
+  //   await Promise.all([
+  //     crashlytics()
+  //   ])
+  // };
 
   const [permission, setPermission] = useState(false);
   const [location, setLocation] = useState({
@@ -24,12 +35,36 @@ const HomeScreen = () => {
     longitude: 0,
   });
 
-  const openSnackbar = () => {
-    Snackbar.show({
-      text: 'Location Refreshed',
-      duration: Snackbar.LENGTH_LONG,
-    });
+  const onsSetupMessage = () => {
+    const authStatus = messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Auth STATUS', authStatus);
+    }
   };
+
+  const onLogScreenView = async () => {
+    try {
+      await analytics().logScreenView({
+        screen_name: 'Main',
+        screen_class: 'Main',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const getAddress = useCallback(() => {
+  //   Geocoder.from({
+  //     lat: location.latitude,
+  //     lng: location.longitude,
+  //   }).then(res => {
+  //     setAddress(res.results[0].address_components[0]);
+  //   });
+  // }, [location.latitude, location.longitude]);
 
   const LocationPermission = async () => {
     try {
@@ -66,6 +101,9 @@ const HomeScreen = () => {
   useEffect(() => {
     LocationPermission();
     getLocation();
+    onsSetupMessage();
+    onLogScreenView();
+    // crashlytics().log('Mounted');
   }, [getLocation, location, permission]);
 
   return (
@@ -89,20 +127,7 @@ const HomeScreen = () => {
         </MapView>
       </View>
       <View style={styles.userContainer}>
-        <View>
-          <Text style={styles.greetText}>Hello, Akbar!</Text>
-          <View style={styles.locationContainer}>
-            <Image source={LocationIcon} style={styles.locationIcon} />
-            <Text style={styles.locationText}>Jalan Bambu Hijau</Text>
-            <TouchableOpacity
-              onPress={() => {
-                openSnackbar();
-                getLocation();
-              }}>
-              <Image source={RefreshIcon} style={styles.refreshIcon} />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <Text style={styles.greetText}>Hello, Akbar!</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Image source={ExitIcon} style={styles.exitIcon} />
         </TouchableOpacity>

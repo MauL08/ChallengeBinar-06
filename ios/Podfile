@@ -21,6 +21,10 @@ target 'wuzz_app' do
 
   pod 'TouchID', :path => '../node_modules/react-native-touch-id'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  pod 'RNReverseGeocode', :path => '../node_modules/@kiwicom/react-native-reverse-geocode'
+
   target 'wuzz_appTests' do
     inherit! :complete
     # Pods for testing

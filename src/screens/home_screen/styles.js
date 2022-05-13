@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: height - ms(220),
+    marginTop: height - ms(250),
     marginHorizontal: AppConfig.padding2XL,
     padding: AppConfig.paddingXL,
     backgroundColor: AppConfig.baseColor,
@@ -28,7 +28,6 @@ export const styles = StyleSheet.create({
   },
   greetText: {
     fontSize: AppConfig.heading2Size,
-    marginBottom: AppConfig.paddingM,
     fontWeight: 'bold',
     color: AppConfig.blackColor,
   },
