@@ -1,6 +1,9 @@
 import { View, Text, TextInput } from 'react-native';
 import React, { useState, useEffect } from 'react';
+
+import analytics from '@react-native-firebase/analytics';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 import { styles } from './styles';
 import LoginButton from '../../widgets/login_button';
@@ -12,7 +15,20 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const onLogScreenView = async () => {
+    try {
+      await analytics().logScreenView({
+        screen_name: 'LoginScreen',
+        screen_class: 'LoginScreen',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    onLogScreenView();
+    crashlytics().log('App mounted.');
     GoogleSignin.configure({
       webClientId:
         '763831033371-5110lhqle5u8dg9sgv9pi3qj9he9vnt6.apps.googleusercontent.com',

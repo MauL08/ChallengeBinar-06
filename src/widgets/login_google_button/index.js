@@ -1,6 +1,8 @@
 import { TouchableOpacity, Text, Image } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+
+import analytics from '@react-native-firebase/analytics';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -12,7 +14,14 @@ const LoginGoogleButton = () => {
   const navigation = useNavigation();
   const [token, setToken] = useState('');
 
+  const onEvent = async () => {
+    await analytics().logLogin({
+      method: 'Google',
+    });
+  };
+
   const onGoogleButtonPress = async () => {
+    onEvent();
     try {
       // Get the users ID token
       const { idToken } = await GoogleSignin.signIn();
@@ -26,6 +35,8 @@ const LoginGoogleButton = () => {
       console.log('Token', googleCredential.token);
       console.log('User UID', res.user.uid);
       console.log('Welcome', res.additionalUserInfo.profile.given_name);
+
+      navigation.navigate('Main');
     } catch (err) {
       console.log(err);
     }

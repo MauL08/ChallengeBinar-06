@@ -10,8 +10,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import GeoLocation from 'react-native-geolocation-service';
+
 import analytics from '@react-native-firebase/analytics';
 import messaging from '@react-native-firebase/messaging';
+import auth from '@react-native-firebase/auth';
 
 // import Snackbar from 'react-native-snackbar';
 // import Geocoder from 'react-native-geocoding';
@@ -35,22 +37,11 @@ const HomeScreen = () => {
     longitude: 0,
   });
 
-  const onsSetupMessage = () => {
-    const authStatus = messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-    if (enabled) {
-      console.log('Auth STATUS', authStatus);
-    }
-  };
-
   const onLogScreenView = async () => {
     try {
       await analytics().logScreenView({
-        screen_name: 'Main',
-        screen_class: 'Main',
+        screen_name: 'HomeScreen',
+        screen_class: 'HomeScreen',
       });
     } catch (error) {
       console.log(error);
@@ -98,10 +89,15 @@ const HomeScreen = () => {
     }
   }, [location, permission]);
 
+  const onLogout = () => {
+    auth()
+      .signOut()
+      .then(res => console.log(res));
+  };
+
   useEffect(() => {
     LocationPermission();
     getLocation();
-    onsSetupMessage();
     onLogScreenView();
     // crashlytics().log('Mounted');
   }, [getLocation, location, permission]);
@@ -128,7 +124,11 @@ const HomeScreen = () => {
       </View>
       <View style={styles.userContainer}>
         <Text style={styles.greetText}>Hello, Akbar!</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity
+          onPress={() => {
+            onLogout();
+            navigation.navigate('Login');
+          }}>
           <Image source={ExitIcon} style={styles.exitIcon} />
         </TouchableOpacity>
       </View>
