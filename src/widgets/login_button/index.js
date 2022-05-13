@@ -1,10 +1,9 @@
 import { Text, TouchableOpacity, Image, Alert } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import auth from '@react-native-firebase/auth';
 import analytics from '@react-native-firebase/analytics';
-import messaging from '@react-native-firebase/messaging';
 import crashlytics from '@react-native-firebase/crashlytics';
 
 import { styles } from './styles';
@@ -21,20 +20,8 @@ const LoginButton = props => {
     });
   };
 
-  // const onSetupMessage = () => {
-  //   const authStatus = messaging().requestPermission();
-  //   const enabled =
-  //     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-  //     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-  //   if (enabled) {
-  //     console.log('Auth STATUS', authStatus);
-  //   }
-  // };
-
   const onLogin = () => {
     onEvent();
-
     if (email.length > 0 && password.length > 0) {
       auth()
         .signInWithEmailAndPassword(email, password)

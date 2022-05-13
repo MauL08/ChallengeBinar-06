@@ -1,9 +1,10 @@
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 
 import analytics from '@react-native-firebase/analytics';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import crashlytics from '@react-native-firebase/crashlytics';
+import messaging from '@react-native-firebase/messaging';
 
 import { styles } from './styles';
 import LoginButton from '../../widgets/login_button';
@@ -26,8 +27,15 @@ const LoginScreen = () => {
     }
   };
 
+  const onSetupMessageNotification = () => {
+    messaging().onNotificationOpenedApp(log => {
+      Alert.alert(log.notification.title, log.notification.body);
+    });
+  };
+
   useEffect(() => {
     onLogScreenView();
+    onSetupMessageNotification();
     crashlytics().log('App mounted.');
     GoogleSignin.configure({
       webClientId:

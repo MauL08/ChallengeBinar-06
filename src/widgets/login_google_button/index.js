@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 import { styles } from './styles';
 
@@ -36,8 +37,13 @@ const LoginGoogleButton = () => {
       console.log('User UID', res.user.uid);
       console.log('Welcome', res.additionalUserInfo.profile.given_name);
 
+      crashlytics().log('User Logged');
+
       navigation.navigate('Main');
     } catch (err) {
+      crashlytics().log('User Login Error');
+      crashlytics().recordError(err);
+
       console.log(err);
     }
   };
