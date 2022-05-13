@@ -7,12 +7,12 @@ import {
 } from 'react-native';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
+// import { useSelector, useDispatch } from 'react-redux';
 
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import GeoLocation from 'react-native-geolocation-service';
 
 import analytics from '@react-native-firebase/analytics';
-import messaging from '@react-native-firebase/messaging';
 import auth from '@react-native-firebase/auth';
 
 // import Snackbar from 'react-native-snackbar';
@@ -20,9 +20,12 @@ import auth from '@react-native-firebase/auth';
 
 import { ExitIcon } from '../../core/assets';
 import { styles } from './styles';
+// import { setLogout } from '../../data/slices/userSlice';
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
   const navigation = useNavigation();
+  // const dispatch = useDispatch();
+  // const { id, userInfo, isLoading } = useSelector(state => state.user);
 
   // const onCrash = () => {
   //   crashlytics().log('Log Mounted');
@@ -93,13 +96,14 @@ const HomeScreen = () => {
     auth()
       .signOut()
       .then(res => console.log(res));
+    // dispatch(setLogout());
+    navigation.navigate('Login');
   };
 
   useEffect(() => {
     LocationPermission();
     getLocation();
     onLogScreenView();
-    // crashlytics().log('Mounted');
   }, [getLocation, location, permission]);
 
   return (
@@ -123,12 +127,8 @@ const HomeScreen = () => {
         </MapView>
       </View>
       <View style={styles.userContainer}>
-        <Text style={styles.greetText}>Hello, Akbar!</Text>
-        <TouchableOpacity
-          onPress={() => {
-            onLogout();
-            navigation.navigate('Login');
-          }}>
+        <Text style={styles.greetText}>Hello, {route.params.email}!</Text>
+        <TouchableOpacity onPress={onLogout}>
           <Image source={ExitIcon} style={styles.exitIcon} />
         </TouchableOpacity>
       </View>

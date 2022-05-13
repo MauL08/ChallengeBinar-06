@@ -10,7 +10,7 @@ import { styles, tabBarStyle } from '../../widgets/bottom_navigator/styles';
 
 const Tab = createBottomTabNavigator();
 
-const MainTabs = () => {
+const MainTabs = ({ route }) => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -19,6 +19,7 @@ const MainTabs = () => {
         tabBarShowLabel: false,
       }}>
       <Tab.Screen
+        initialParams={{ email: route.params.email }}
         name="Home"
         component={HomeScreen}
         options={{

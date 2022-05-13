@@ -36,7 +36,9 @@ const FingerprintButton = () => {
   const pressHandler = () => {
     TouchID.authenticate('', optionalConfigObject)
       .then(() => {
-        navigation.navigate('Main');
+        navigation.navigate('Main', {
+          email: 'Anonymous',
+        });
       })
       .catch(err => {
         console.log(err);

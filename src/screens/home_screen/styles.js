@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: height - ms(250),
+    marginTop: height - ms(220),
     marginHorizontal: AppConfig.padding2XL,
     padding: AppConfig.paddingXL,
     backgroundColor: AppConfig.baseColor,

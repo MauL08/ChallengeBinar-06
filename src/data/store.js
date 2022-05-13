@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -10,12 +11,13 @@ import {
   REGISTER,
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { actionTypes } from 'react-redux-firebase';
 
 import userSlice from './slices/userSlice';
 
-const reducers = {
+const reducers = combineReducers({
   user: userSlice,
-};
+});
 
 const persistConfig = {
   key: 'Key-App',
